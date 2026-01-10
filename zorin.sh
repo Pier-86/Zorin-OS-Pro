@@ -33,7 +33,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v10.0.1.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v10.0.1.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
 echo ""
 echo "(Please note this tool ONLY works on ZorinOS 18 Core, ZorinOS 17 Core, and ZorinOS 16 Core)"
 echo ""
@@ -306,16 +306,47 @@ else
 	sudo chown root:root /etc/apt/trusted.gpg.d/zorin-os-premium.gpg
 fi
 
-# Refresh apt cache to recognize the new keys
-echo ""
-echo "Refreshing apt cache with new GPG keys..."
-if ! apt_update_with_retry; then
-	echo "Warning: Failed to refresh apt cache after adding keys. Continuing anyway..."
-fi
-
 echo ""
 echo "Done adding ZorinOS's Public gpg keys..."
 echo ""
+
+echo ""
+echo "Adding premium flag..."
+echo ""
+
+# Introduce premium user agent
+sudo rm -f /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
+sudo touch /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
+sudo tee /etc/apt/apt.conf.d/99zorin-os-premium-user-agent > /dev/null << 'EOF'
+Acquire
+{
+  http::User-Agent "Zorin OS Premium";
+};
+
+EOF
+
+echo ""
+echo "Done adding premium flag..."
+echo ""
+
+# Update packages with retry logic
+if ! apt_update_with_retry; then
+	echo "Error: Failed to update apt repositories after adding sources."
+	echo "Waiting 10 seconds and trying once more..."
+	sleep 10
+	if ! apt_update_with_retry; then
+		echo "Warning: apt-get update failed. Some packages may not be available."
+	fi
+fi
+
+# Refresh apt cache to recognize the new keys
+echo ""
+echo "Refreshing apt cache with new GPG keys..."
+echo ""
+
+if ! apt_update_with_retry; then
+	echo "Warning: Failed to refresh apt cache after adding keys. Continuing anyway..."
+fi
 
 echo ""
 echo "Now making and creating & installing dummy debs to satisfy dependencies for zorin-os-premium-keyring (if needed)..."
@@ -374,37 +405,8 @@ echo "Done installing dummy debs if needed..."
 echo ""
 
 echo ""
-echo "Adding premium flag..."
-echo ""
-
-# Introduce premium user agent
-sudo rm -f /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
-sudo touch /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
-sudo tee /etc/apt/apt.conf.d/99zorin-os-premium-user-agent > /dev/null << 'EOF'
-Acquire
-{
-  http::User-Agent "Zorin OS Premium";
-};
-
-EOF
-
-echo ""
-echo "Done adding premium flag..."
-echo ""
-
-echo ""
 echo "Adding premium content from the official apt repo..."
 echo ""
-
-# Update packages with retry logic
-if ! apt_update_with_retry; then
-	echo "Error: Failed to update apt repositories after adding sources."
-	echo "Waiting 10 seconds and trying once more..."
-	sleep 10
-	if ! apt_update_with_retry; then
-		echo "Warning: apt-get update failed. Some packages may not be available."
-	fi
-fi
 
 if [ "$version" = "16" ]; then
 	# Install 16 pro content
