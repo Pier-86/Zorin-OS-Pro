@@ -1,4 +1,4 @@
-# Zorin-OS-Pro [![Shellcheck](https://img.shields.io/github/actions/workflow/status/NanashiTheNameless/Zorin-OS-Pro/shellcheck.yml?branch=main&label=Shellcheck&style=for-the-badge&labelColor=0d1117)](https://github.com/NanashiTheNameless/Zorin-OS-Pro/actions/workflows/shellcheck.yml)
+# Zorin-OS-Pro [![Shellcheck](https://img.shields.io/github/actions/workflow/status/Pier-86/Zorin-OS-Pro/shellcheck.yml?branch=main&label=Shellcheck&style=for-the-badge&labelColor=0d1117)](https://github.com/Pier-86/Zorin-OS-Pro/actions/workflows/shellcheck.yml)
 
 ## This script turns your Zorin OS CORE instance into a Zorin OS PRO instance
 
@@ -18,7 +18,7 @@ See [raw/NOTICE.txt](</raw/NOTICE.txt>) for more info.
 
 ## Stargazers over time
 
-[![Stargazers over time](<https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro.svg?variant=adaptive>)](<https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro>)
+[![Stargazers over time](<https://starchart.cc/Pier-86/Zorin-OS-Pro.svg?variant=adaptive>)](<https://starchart.cc/Pier-86Zorin-OS-Pro>)
 
 ## Usage
 
@@ -29,13 +29,13 @@ Copy the command below, paste in your terminal, enter your password when prompte
 ## For The Minimum Additional Content
 
 ```sh
-bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -U
+bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/Pier-86/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -U
 ```
 
 ## For A Lot of Extra Content (Recommended)
 
 ```sh
-bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -U -X
+bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/Pier-86/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -U -X
 ```
 
 ## Examples
@@ -50,6 +50,6 @@ bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNamel
 
 ## Credits
 
-[All Major Contributors](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/blob/main/CONTRIBUTORS.md>)
+[All Major Contributors](<https://github.com/Pier-86/Zorin-OS-Pro/blob/main/CONTRIBUTORS.md>)
 
-[All Other Contributors](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors>)
+[All Other Contributors](<https://github.com/Pier-86/Zorin-OS-Pro/graphs/contributors>)
